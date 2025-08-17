@@ -402,8 +402,24 @@ async def request_tariff_from_wits(hs_code: str, partner: str, reporter: str, ta
     
     # Return WTO rate if non-zero and different from WITS, else WITS rate
     final_rate = wto_rate if wto_rate is not None and wto_rate != 0.0 and wto_rate != rate else rate
-    if final_rate != rate:
-        reason += f". Using WTO rate {final_rate} due to non-zero value."
+    
+    # Track the source URL of the final rate for clear attribution
+    final_rate_source_url = ""
+    if final_rate == wto_rate and wto_rate is not None:
+        if 'simplified_url' in locals():
+            final_rate_source_url = simplified_url
+        elif 'wto_url' in locals():
+            final_rate_source_url = wto_url
+        reason += f". Using WTO rate {final_rate} due to non-zero value (source: {final_rate_source_url})"
+    else:
+        # This is the WITS rate
+        final_rate_source_url = last_query_url
+        if wto_rate is not None:
+            reason += f". Using original WITS rate {final_rate} (source: {final_rate_source_url})"
+    
+    # Ensure the final reason always contains the final source URL
+    if "source:" not in reason:
+        reason += f". Final rate source: {final_rate_source_url}"
     
     return final_rate, reason
 
