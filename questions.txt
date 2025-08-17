@@ -1,0 +1,12 @@
+Questions
+The topics are broad. Each one of them is big enough to become an AI product on itself. 
+For example, pricing and regression model with XGBoost is an AI Company's problem in itself. That involve a lot of forecasting methodology, data cleanings etc... 
+Not something that can resolve or resolve better within 24 hrs. 
+
+So, what are the essence or most critical painpoints of this problem that traditional system cannot resolve and AI might disrupted?
+
+1) How to find the cost elements at the basket/order level
+2) How to figure out the shippment and estimate the shipping
+3) How to dynamically determine the invoice structure based on the cost
+4) How to determine the optimal pricing for maximize the profit
+

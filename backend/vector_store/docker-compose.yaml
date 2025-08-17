@@ -1,0 +1,14 @@
+# Start a postgresql database service
+services:
+  db:
+    image: ankane/pgvector:latest
+    environment:
+      POSTGRES_DB: air_supply_db
+      POSTGRES_USER: air_supply_user
+      POSTGRES_PASSWORD: air_supply_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+volumes:
+  db_data:
